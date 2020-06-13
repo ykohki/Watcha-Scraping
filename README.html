@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>Watchaで記録した自分のデータをcsv型式でバックアップ、取り出します。</p>
+<h2 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h2>
+<ol>
+<li>各スクリプトに自分のIDやパスを書き込む</li>
+</ol>
+<pre class="hljs"><code><div>user_id = <span class="hljs-string">""</span>
+email = <span class="hljs-string">""</span>
+password_ = <span class="hljs-string">""</span>
+</div></code></pre>
+<ol start="2">
+<li>スクレイピング</li>
+</ol>
+<h3 id="%E6%96%B0%E8%A6%8F%E3%83%BB%E5%88%9D%E5%9B%9E">新規・初回</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># 映画</span>
+python scripts/watcha_make_csv_new.py -j movie -p <span class="hljs-built_in">log</span>/202006_movie_all.csv
+<span class="hljs-comment"># テレビ</span>
+python scripts/watcha_make_csv_new.py -j tv -p <span class="hljs-built_in">log</span>/202006_tv_all.csv
+</div></code></pre>
+<h3 id="%E6%AC%A1%E5%9B%9E%E4%BB%A5%E9%99%8D">次回以降</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># yearmonthは、実行時の年月を指定</span>
+<span class="hljs-comment"># 映画</span>
+python scripts/watcha_diff.py -j movie -y 202007
+<span class="hljs-comment"># テレビ</span>
+python scripts/watcha_diff.py -j tv -y 202007
+</div></code></pre>
+<p>先月分の記録から、差分を取り、追加タイトルがあれば更新してファイルを新規作成。</p>
+<h2 id="%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%93%E3%81%A8">できること</h2>
+<ol>
+<li>テレビと映画の両方の記録を取得</li>
+<li>自分が記録したタイトルごとに、</li>
+</ol>
+<ul>
+<li>タイトル</li>
+<li>リンク</li>
+<li>画像のリンク</li>
+<li>自分の評価</li>
+<li>自分のレビュー</li>
+<li>ジャンル</li>
+<li>時間</li>
+<li>説明</li>
+<li>お気に入り<br>
+を取得</li>
+</ul>
+<h2 id="%E5%BF%85%E8%A6%81%E3%81%AA%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA">必要なライブラリ</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver
+<span class="hljs-keyword">import</span> chromedriver_binary
+<span class="hljs-keyword">import</span> bs4
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> argparse
+</div></code></pre>
+<p>Sleniumはヘッドレスモードで実行。</p>
+<p>chrome driverの別途インストールが必要。</p>
+
+</body>
+</html>
