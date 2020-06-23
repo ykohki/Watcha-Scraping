@@ -1,4 +1,6 @@
 Watchaで記録した自分のデータをcsv形式でバックアップ、取り出します。
+## 解説記事
+[Watchaに記録したデータをスクレイピングでバックアップ-Med Python](https://medpython.blogspot.com/2020/06/watcha-scraping_23.html)
 
 ## 使い方
 
